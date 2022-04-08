@@ -1,0 +1,160 @@
+<div class="row">
+    <br>
+  </div>
+  <div class="container bor">
+    <div *ngIf="regError" class="invalid-data reg">{{errorDetails}}</div>
+          <div class="row">
+              <h2>Seller Registration</h2>
+          </div>
+              <form name="sellerRegisterForm" [formGroup]="sellerRegisterForm" (ngSubmit)="sellerRegisterForm.valid && onSubmit()">
+      <div class="row">
+        <div class="col-6">
+            
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text"  class="form-control" pattern="[a-zA-Z ]*" formControlName="firstname" [ngClass]="{'is-invalid':sellerRegisterForm.get('firstname')?.touched && sellerRegisterForm.get('firstname')?.invalid}" required />
+                <div *ngIf="sellerRegisterForm.get('firstname')?.touched && sellerRegisterForm.get('firstname')?.invalid" class="invalid-feedback">
+                  <div *ngIf="sellerRegisterForm.get('firstname')?.errors?.['required']">First Name is required</div>
+                  <div *ngIf="sellerRegisterForm.get('firstname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                </div>
+              </div>
+            
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':sellerRegisterForm.get('email')?.touched && sellerRegisterForm.get('email')?.invalid}" required />
+                <div *ngIf="sellerRegisterForm.get('email')?.touched && sellerRegisterForm.get('email')?.invalid" class="invalid-feedback">
+                  <div *ngIf="sellerRegisterForm.get('email')?.errors?.['required']" >Email Name is required</div>
+                  <div *ngIf="sellerRegisterForm.get('email')?.errors?.['email']">Email must be a valid email Address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':sellerRegisterForm.get('password')?.touched && sellerRegisterForm.get('password')?.invalid}" required />
+                <div *ngIf="sellerRegisterForm.get('password')?.touched && sellerRegisterForm.get('password')?.invalid"class="invalid-feedback">
+                  <div *ngIf="sellerRegisterForm.get('password')?.errors?.['required']">Password is required</div>
+                  <div *ngIf="sellerRegisterForm.get('password')?.errors?.['minlength']">Password must be at least of 8 charactors</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="sin">SIN No</label>
+                  <input type="text" class="form-control" pattern="[0-9]*"  formControlName="sin" [ngClass]="{'is-invalid':sellerRegisterForm.get('sin')?.touched && sellerRegisterForm.get('sin')?.invalid}"  required />
+                  <div *ngIf="sellerRegisterForm.get('sin')?.touched && sellerRegisterForm.get('sin')?.invalid" class="invalid-feedback">
+                    <div *ngIf="sellerRegisterForm.get('sin')?.errors?.['required']">SIN No is required</div>
+                    <div *ngIf="sellerRegisterForm.get('sin')?.errors?.['pattern']"> Please Enter Valid sin</div>
+                    
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="bankname">Bank Name</label>
+                  <input type="text" class="form-control" pattern="[a-zA-Z]*" formControlName="bankname" [ngClass]="{'is-invalid':sellerRegisterForm.get('bankname')?.touched && sellerRegisterForm.get('bankname')?.invalid}"  required />
+                  <div *ngIf="sellerRegisterForm.get('bankname')?.touched && sellerRegisterForm.get('bankname')?.invalid" class="invalid-feedback">
+                    <div *ngIf="sellerRegisterForm.get('bankname')?.errors?.['required']">Bank Name is required</div>
+                    <div *ngIf="sellerRegisterForm.get('bankname')?.errors?.['pattern']"> Please Enter Valid Bank Name</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="zipcode">Seller Zipcode</label>
+                  <input type="text" class="form-control" pattern="[a-zA-Z0-9 ]*" formControlName="zipcode" [ngClass]="{'is-invalid':sellerRegisterForm.get('zipcode')?.touched && sellerRegisterForm.get('zipcode')?.invalid}"  required />
+                  <div *ngIf="sellerRegisterForm.get('zipcode')?.touched && sellerRegisterForm.get('zipcode')?.invalid" class="invalid-feedback">
+                    <div *ngIf="sellerRegisterForm.get('zipcode')?.errors?.['required']">Zipcode is required</div>
+                    <div *ngIf="sellerRegisterForm.get('zipcode')?.errors?.['pattern']"> Please Enter Valid zipcode</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="state">Seller State</label>
+                  <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="state" [ngClass]="{'is-invalid':sellerRegisterForm.get('state')?.touched && sellerRegisterForm.get('state')?.invalid}"  required />
+                  <div *ngIf="sellerRegisterForm.get('state')?.touched && sellerRegisterForm.get('state')?.invalid" class="invalid-feedback">
+                    <div *ngIf="sellerRegisterForm.get('state')?.errors?.['required']">State is required</div>
+                  </div>
+                </div>
+                
+        </div>
+        <div class="col-6">
+           
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="lastname" [ngClass]="{'is-invalid':sellerRegisterForm.get('lastname')?.touched && sellerRegisterForm.get('lastname')?.invalid}"  required />
+              <div *ngIf="sellerRegisterForm.get('lastname')?.touched && sellerRegisterForm.get('lastname')?.invalid" class="invalid-feedback">
+                <div *ngIf="sellerRegisterForm.get('lastname')?.errors?.['required']">Last Name is required</div>
+                <div *ngIf="sellerRegisterForm.get('lastname')?.errors?.['pattern']"> Please enter alphabets only</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone"> Phone no</label>
+              <input type="text" class="form-control" formControlName="phone" [ngClass]="{'is-invalid':sellerRegisterForm.get('phone')?.touched && sellerRegisterForm.get('phone')?.invalid}" required />
+              <div *ngIf="sellerRegisterForm.get('phone')?.touched && sellerRegisterForm.get('phone')?.invalid" class="invalid-feedback">
+                <div *ngIf="sellerRegisterForm.get('phone')?.errors?.['required']" >Phone no is required</div>
+                <div *ngIf="sellerRegisterForm.get('phone')?.errors?.['minlength']">Phhone no must be at least of 10 digits</div>
+                <div *ngIf="sellerRegisterForm.get('phone')?.errors?.['maxlength']">Phone no must be valid</div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="cpassword">Confirm Password</label>
+                <input type="password" class="form-control"  formControlName="cpassword" [ngClass]="{'is-invalid':sellerRegisterForm.get('cpassword')?.touched && sellerRegisterForm.get('cpassword')?.invalid}"  required />
+                <div *ngIf="sellerRegisterForm.get('cpassword')?.touched && sellerRegisterForm.get('cpassword')?.invalid" class="invalid-feedback">
+                  <div *ngIf="sellerRegisterForm.get('cpassword')?.errors?.['required']">Confirm Password is required</div>
+                  <div *ngIf="sellerRegisterForm.get('cpassword')?.errors?.['MustMatch']">Confirm Password does match password</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="accounttype">Account Type</label>
+                  <select class="form-select form-control" formControlName="accounttype" [ngClass]="{'is-invalid':sellerRegisterForm.get('accounttype')?.touched && sellerRegisterForm.get('accounttype')?.invalid}" required>
+                      <option value="Individual">Individual</option>
+                      <option value="Professional">Professional</option>
+                    </select>
+                    <div *ngIf="sellerRegisterForm.get('accounttype')?.touched && sellerRegisterForm.get('accounttype')?.invalid" class="invalid-feedback">
+                      <div *ngIf="sellerRegisterForm.get('accounttype')?.errors?.['required']">Account Type is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="accountno">Bank Account No</label>
+                  <input type="text" class="form-control"   formControlName="accountno" [ngClass]="{'is-invalid':sellerRegisterForm.get('accountno')?.touched && sellerRegisterForm.get('accountno')?.invalid}"  required />
+                  <div *ngIf="sellerRegisterForm.get('accountno')?.touched && sellerRegisterForm.get('accountno')?.invalid" class="invalid-feedback">
+                  <div *ngIf="sellerRegisterForm.get('accountno')?.errors?.['required']">Bank Account No is required</div>
+                </div>
+                </div>
+              <div class="form-group">
+                  <label for="country">Seller Country</label>
+                  <select class="form-select form-control" formControlName="country" [ngClass]="{'is-invalid':sellerRegisterForm.get('country')?.touched && sellerRegisterForm.get('country')?.invalid}" required>
+                      <option value="India">India</option>
+                      <option value="Canada">Canada</option>
+                    </select>
+                    <div *ngIf="sellerRegisterForm.get('country')?.touched && sellerRegisterForm.get('country')?.invalid" class="invalid-feedback">
+                      <div *ngIf="sellerRegisterForm.get('country')?.errors?.['required']">Country is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="seller_address">Seller Address:</label>
+                  <textarea class="form-control" rows="4"  formControlName="seller_address" id="seller_address" name="seller_address" required></textarea>
+                  <div *ngIf="sellerRegisterForm.get('seller_address')?.touched && sellerRegisterForm.get('seller_address')?.invalid" class="invalid-feedback">
+                    <div *ngIf="sellerRegisterForm.get('seller_address')?.errors?.['required']">Seller Address is required</div>
+                  </div>
+                </div>  
+                
+          </div>
+      </div>
+      
+      <div class="row">
+                 
+        <div class="col-md-5">
+          <a href="/seller-login">
+            Already have a account? SignIn!!
+          </a>
+        </div>
+      </div>
+       <div class="row">
+           <br>
+       </div>
+      <div class="row reg">
+          <div class="form-group">
+              <button [disabled]="sellerRegisterForm.invalid" class="btn btn-primary">Register</button>
+            </div>
+      </div>
+      <div class="row">
+        <br>
+    </div>
+              
+      
+  </form>
+    </div>

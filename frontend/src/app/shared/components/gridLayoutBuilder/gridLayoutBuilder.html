@@ -1,0 +1,54 @@
+<!-- =======================================================
+ Author: [Anita Kumari] (an954221@dal.ca)
+======================================================= -->
+
+
+<div class="grid-layout-main-content">
+
+    <p-dataView #dv [value]="gridData" [paginator]="true" [rows]="9" filterBy="name"
+        layout="grid">
+
+        <ng-template let-product pTemplate="gridItem">
+
+                <div *ngIf="gridParent=='bidding'" (click)="action(product)" class="p-col-12 p-md-4 card-hdl">
+                    <div style="width: 100%;" class="product-grid-item card p-shadow-7">
+                        <ng-container >
+                            <div  class="product-grid-item-content">
+                                <img src="{{product?.images[0]}}" alt="" class="banner-img" />
+                                <div class="product-name">{{product?.name}}</div>
+                                <div class="product-description">Bidding Price: {{'$'+product.startingBidPrice}}</div>
+                                
+                            </div>
+                            <div class="product-grid-item-bottom ">
+                                <button class="btn bid-btn" type="submit" (click)="action(product)">Place a Bid</button>
+
+                            </div>
+
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div *ngIf="gridParent=='product'"  class="p-col-12 p-md-4 card-hdl">
+                      <div style="width: 100%;" class="product-grid-item card p-shadow-7">
+                        <ng-container>
+                            <div  class="product-grid-item-content">
+                                <img [src]="product.image" alt="" class="banner-img" (click)="navigateToProductPage(product?.id)"/>
+                                <div class="product-name">{{product?.name}}</div>
+                                <div class="product-description">Price: {{'$'+product.price}}</div>
+                                
+                            </div>
+                            <div class="product-grid-item-bottom ">
+                                <button class="btn bid-btn" style="margin-right: 6%;" type="submit" (click)="addToCart(product?.id)">Add to cart</button>
+                               <button class="btn bid-btn" type="submit">Buy Now</button>
+                            </div>
+                        </ng-container>
+
+                    </div>
+                </div>
+
+
+        </ng-template>
+
+</p-dataView>
+
+</div>

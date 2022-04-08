@@ -1,0 +1,75 @@
+<!-- 
+Authored by Rutu Joshi, B00897744, rt296393@dal.ca -->
+<div style="padding-top:5%;" class="main-bdy">
+    <!-- <mat-card class="main-reviews"> -->
+        <!-- <div>
+            <p class="mb-3" style="order: 2;font-size: x-large;margin-top: 10px; padding-left: 10px;">Ratings and Reviews:
+            </p>
+        </div> -->
+    
+        <mat-card class="avg-review">
+            <div class="avg-style h-50">
+                <div>
+    
+                    <p class="mb-0" style="order: 1;font-size: 20px;margin-top: 10px;">Average Reviews:</p>
+                </div>
+                <div>
+                    <p class="mb-0" style="order: 2;font-size: 20px;margin-top: 10px; padding-left: 10px;">{{averagerating}}/5</p>
+                </div>
+                <div class="media-body" style="order: 3;margin-left: 5px;margin-top: 10px;">
+                    <!-- <ngb-rating [max]="5" [rate]=averagerating [readonly]="true"></ngb-rating> -->
+    
+                </div>
+    
+    
+                <div style="order: 4; " class="">
+                    <div class="example-button-container">
+                        
+                        
+
+
+                        
+                    </div>
+                </div>
+
+                <div style="order: 5; " class="write-review">
+                    <div class="example-button-container">
+
+                        <p-button icon="pi pi-user-edit" styleClass="rounded-button ui-button-secondary mt-1" (click)="writeReview()"></p-button>
+                       
+                    </div>
+                </div>
+
+                
+
+
+
+
+
+
+
+              
+    
+            </div>
+
+        </mat-card>
+
+    <mat-card>
+        
+        <app-delete-review [ureviews] = "userReviews"></app-delete-review>
+        
+        <div >
+            <app-single-review [otherreviews] = "otherReviews"></app-single-review>
+            
+        </div>
+        
+    </mat-card>
+    
+        
+    
+    
+        
+        
+   
+</div>
+

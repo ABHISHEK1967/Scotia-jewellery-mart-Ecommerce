@@ -1,0 +1,82 @@
+
+<div class="container">
+    <div class="row extra">
+     
+    </div>
+      <div class="row">
+        <div class="col-3">
+         
+        </div>
+        <div class="col-6 bor">
+          <div class="jumbotron">
+            <div *ngIf="regError" class="invalid-data reg">{{errorDetails}}</div>
+            <h2>User Registration</h2>
+            <form name="registerform" [formGroup]="registerform" (ngSubmit)="registerform.valid && onSubmit()">
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text"  class="form-control" pattern="[a-zA-Z ]*" formControlName="firstname" [ngClass]="{'is-invalid':registerform.get('firstname')?.touched && registerform.get('firstname')?.invalid}" required />
+                <div *ngIf="registerform.get('firstname')?.touched && registerform.get('firstname')?.invalid" class="invalid-feedback">
+                  <div *ngIf="registerform.get('firstname')?.errors?.['required']">First Name is required</div>
+                  <div *ngIf="registerform.get('firstname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="lastname" [ngClass]="{'is-invalid':registerform.get('lastname')?.touched && registerform.get('lastname')?.invalid}"  required />
+                <div *ngIf="registerform.get('lastname')?.touched && registerform.get('lastname')?.invalid" class="invalid-feedback">
+                  <div *ngIf="registerform.get('lastname')?.errors?.['required']">Last Name is required</div>
+                  <div *ngIf="registerform.get('lastname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':registerform.get('email')?.touched && registerform.get('email')?.invalid}" required />
+                <div *ngIf="registerform.get('email')?.touched && registerform.get('email')?.invalid" class="invalid-feedback">
+                  <div *ngIf="registerform.get('email')?.errors?.['required']" >Email Name is required</div>
+                  <div *ngIf="registerform.get('email')?.errors?.['email']">Email must be a valid email Address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" class="form-control" formControlName="phone" [ngClass]="{'is-invalid':registerform.get('phone')?.touched && registerform.get('phone')?.invalid}" required />
+                <div *ngIf="registerform.get('phone')?.touched && registerform.get('phone')?.invalid" class="invalid-feedback">
+                  <div *ngIf="registerform.get('phone')?.errors?.['required']" >Phone no is required</div>
+                  <div *ngIf="registerform.get('phone')?.errors?.['minlength']">Please enter valid phone number</div>
+                  <div *ngIf="registerform.get('phone')?.errors?.['maxlength']">Phone number can have 10 digits</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':registerform.get('password')?.touched && registerform.get('password')?.invalid}" required />
+                <div *ngIf="registerform.get('password')?.touched && registerform.get('password')?.invalid"class="invalid-feedback">
+                  <div *ngIf="registerform.get('password')?.errors?.['required']">Password is required</div>
+                  <div *ngIf="registerform.get('password')?.errors?.['minlength']">Password must be at least of 8 charactors</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="cpassword">Confirm Password</label>
+                  <input type="password" class="form-control"  formControlName="cpassword" [ngClass]="{'is-invalid':registerform.get('cpassword')?.touched && registerform.get('cpassword')?.invalid}"  required />
+                  <div *ngIf="registerform.get('cpassword')?.touched && registerform.get('cpassword')?.invalid" class="invalid-feedback">
+                    <div *ngIf="registerform.get('cpassword')?.errors?.['required']">Confirm Password is required</div>
+                    <div *ngIf="registerform.get('cpassword')?.errors?.['MustMatch']">Confirm Password does match password</div>
+                    
+                  </div>
+                </div>
+  
+                <div class="row">
+                 
+                  <div class="col-md-5">
+                    <a href="/login">
+                      Already have a account? SignIn!!
+                    </a>
+                  </div>
+                </div>
+                <br>
+              <div class="form-group reg">
+                <button [disabled]="registerform.invalid" class="btn btn-primary">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

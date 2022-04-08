@@ -1,0 +1,78 @@
+<!--
+Authored by Xiao Ling, B00877105, xz540782@dal.ca
+-->
+
+<div class="bidding-main-content">
+
+  <div style="display: flex;
+  justify-content: space-between; background-color: #fff;">
+      <h4 class="p-col-12 pt-4 pl-5 bidding-header">Products</h4>
+      <!-- <img src="assets/images/filter-solid.svg" alt="" class="font-awesome-icon-img" (click)="openFilterPanel()"/> -->
+      <div style="font-size: 30px;
+      margin-right: 2%;
+      margin-top: 2%;">
+        <i class="fa fa-filter" style="margin-right: 15px;" (click)="openFilterPanel()"></i>
+        <i (click)="op.toggle($event)" class="fa fa-sort"></i>
+        <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '130px'}">
+          <ng-template pTemplate>
+              <div class="sort-modal" (click)="setSortValue(1)">Price Low to High</div>
+              <div class="sort-modal" (click)="setSortValue(-1)">Price High to Low</div>
+              <div class="sort-modal" (click)="setSortValue(0)">By relevance</div>
+          </ng-template>
+        </p-overlayPanel>
+
+      </div>
+
+
+  </div>
+  <div *ngIf="visibleSidebar2">
+
+      <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000" >
+        <div class="filter-head">
+          <h3 style="font-weight:normal">Filter</h3>
+
+        </div>
+
+          <hr>
+
+          <!-- Filter -->
+          <div class="filter-category">
+            <div class="cat-flt-header">
+              Category
+            </div>
+            <div *ngFor="let category of categories" class="p-field-checkbox">
+                <p-radioButton [inputId]="category.id" name="category" [value]="category._id" [(ngModel)]="filterObj.category"
+                    ></p-radioButton>
+                <label [for]="category?.id" class="radio-btn-mr">{{category?.name}}</label>
+            </div>
+          </div>
+
+          <div class="filter-brand">
+            <div class="cat-flt-header">
+              Brand
+            </div>
+            <input type="text" pInputText [(ngModel)]="filterObj.brand"/>
+          </div>
+
+          <div class="filter-price">
+            <div class="cat-flt-header">
+              Price Range
+            </div>
+            <div>
+              <input class="min-price-style" type="number" pInputText [(ngModel)]="filterObj.min_price"/>
+              <input type="number" pInputText [(ngModel)]="filterObj.max_price"/>
+            </div>
+          </div>
+
+          <div>
+            <!-- <i class="fa fa-paper-plane" (click)="filterProductList()"></i> -->
+            <button class="btn bid-btn" type="submit" (click)="filterProductList()">Apply</button>
+          </div>
+
+      </p-sidebar>
+      </div>
+  <div>
+      <grid-layout-builder [gridData]="products" [gridParent]="'product'"></grid-layout-builder>
+  </div>
+
+</div>

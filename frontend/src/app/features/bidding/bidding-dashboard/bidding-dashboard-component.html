@@ -1,0 +1,16 @@
+<!-- =======================================================
+ Author: [Anita Kumari] (an954221@dal.ca)
+======================================================= -->
+
+<div class="bidding-main-content">
+    <div class="bidding-dashboard-header">
+        <h4 class="p-col-12 pt-4 pl-5 bidding-header">Bidding Products</h4>
+        <span class="font-awesome-icon-img">
+            <i class="fa fa-history" (click)="navigateToHistory()"></i>
+        </span>  
+    </div>
+    <div>
+        <grid-layout-builder [gridData]="biddingData" [gridParent]="'bidding'" (actionTriggered)="navigateToBiddingView($event)"></grid-layout-builder>
+    </div>
+    
+</div>

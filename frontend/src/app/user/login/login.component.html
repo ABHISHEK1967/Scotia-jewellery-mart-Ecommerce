@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row extra ">
+     
+    </div>
+      <div class="row">
+        <div class="col-3">
+  
+        </div>
+        <div class="col-6 bor">
+          <div class="jumbotron">
+            <h2>User Login</h2>
+            <div  *ngIf="wrongPassword" class="invalid-data">
+               Incorrect Email/Password
+            </div>
+            <form name="loginform" [formGroup]="loginform" (ngSubmit)="loginform.valid && onSubmit()">
+          
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':loginform.get('email')?.touched && loginform.get('email')?.invalid}" required />
+                <div *ngIf="loginform.get('email')?.touched && loginform.get('email')?.invalid" class="invalid-feedback">
+                  <div *ngIf="loginform.get('email')?.errors?.['required']" >Email Name is required</div>
+                  <div *ngIf="loginform.get('email')?.errors?.['email']">Email must be a valid email Address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':loginform.get('password')?.touched && loginform.get('password')?.invalid}" required />
+                <div *ngIf="loginform.get('password')?.touched && loginform.get('password')?.invalid"class="invalid-feedback">
+                  <div *ngIf="loginform.get('password')?.errors?.['required']">Password is required</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#forgotpassModal">Forgot Password?</a>
+                </div>
+                <div class="col-md-5">
+                  <a href="/register">
+                    Dont have Account? SignUp!!
+                  </a>
+                </div>
+              </div>
+              
+                <br>
+              <div class="form-group reg">
+                <button [disabled]="loginform.invalid" class="btn btn-primary">Login</button>
+              </div>
+            </form>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  
+  
+    <!--  Forgot Password Modal -->
+  <div class="modal fade" id="forgotpassModal" tabindex="-1" aria-labelledby="forgotpassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="forgotpassModalLabel">Forgot Password</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <form name="forgotpassform" [formGroup]="forgotpassform" (ngSubmit)="forgotpassform.valid">
+    <div class="modal-body">
+      <div  *ngIf="wrongDetails" class="invalid-data">
+        Incorrect Details 
+     </div>
+     <div  *ngIf="correctDetails" class="valid-data">
+      Password Reset Successfully
+   </div>
+    <div class="form-group">
+    <label for="email">Enter your Email</label>
+    <input type="text" class="form-control"  formControlName="email" [ngClass]="{'is-invalid':forgotpassform.get('email')?.touched && forgotpassform.get('email')?.invalid}" required />
+    <div *ngIf="forgotpassform.get('email')?.touched && forgotpassform.get('email')?.invalid"class="invalid-feedback">
+        <div *ngIf="forgotpassform.get('email')?.errors?.['required']">Email is required</div>
+        <div *ngIf="forgotpassform.get('email')?.errors?.['email']">Email must be a valid email Address</div>
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="phone"> Enter your Phone Number</label>
+    <input type="text" class="form-control"  formControlName="phone" pattern="[0-9]*" [ngClass]="{'is-invalid':forgotpassform.get('phone')?.touched && forgotpassform.get('phone')?.invalid}" required />
+    <div *ngIf="forgotpassform.get('phone')?.touched && forgotpassform.get('phone')?.invalid"class="invalid-feedback">
+        <div *ngIf="forgotpassform.get('phone')?.errors?.['required']">Phone Number is required</div>
+        <div *ngIf="forgotpassform.get('phone')?.errors?.['minlength']">Please enter valid phone number</div>
+        <div *ngIf="forgotpassform.get('phone')?.errors?.['maxlength']">Phone number can have 10 digits</div>
+        <div *ngIf="forgotpassform.get('phone')?.errors?.['pattern']">Please Enter digits only</div>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Enter New password</label>
+      <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':forgotpassform.get('password')?.touched && forgotpassform.get('password')?.invalid}" required />
+      <div *ngIf="forgotpassform.get('password')?.touched && forgotpassform.get('password')?.invalid"class="invalid-feedback">
+          <div *ngIf="forgotpassform.get('password')?.errors?.['required']">Password is required</div>
+          <div *ngIf="forgotpassform.get('password')?.errors?.['minlength']">Password should have atleast 8 characters</div>
+      </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    <button (click)="forgotPassword()"  [disabled]="forgotpassform.invalid" type="button" class="btn btn-primary">Confirm</button>
+    
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+  

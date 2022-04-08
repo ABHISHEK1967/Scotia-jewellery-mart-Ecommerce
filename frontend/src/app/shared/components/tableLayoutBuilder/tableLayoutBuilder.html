@@ -1,0 +1,35 @@
+<!-- =======================================================
+ Author: [Anita Kumari] (an954221@dal.ca)
+======================================================= -->
+
+<div class="card table-layout-main-content">
+    <p-table [value]="tableData" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" 
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td> <img [src]="product.biddingProductId.images[0]" alt="" class="table-img" /></td>
+                <td>
+                    <div>
+                        <span>{{product?.biddingProductId?.name}}</span><br>
+                        <span>{{product?.biddingProductId?.description}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <div>Price: ${{product?.bid_amount}}</div>
+                        <div *ngIf="product?.bid_status=='WINNER'"><img src="assets/images/trophy.jpeg" alt="" class="winner-img" /></div>
+                        <div *ngIf="product?.bid_status!='WINNER'"><img src="assets/images/xmark-solid.svg" alt="" class="lost-img" /></div>
+                        <i class="fa fa-circle-xmark"></i>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

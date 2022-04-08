@@ -1,0 +1,349 @@
+
+
+<div class="container emp-profile">
+    <div class="row">
+    <div class="col-md-3">
+    <div *ngIf="successAlertShow" class="alert alert-success alert-dismissible">
+    <strong>Success!   </strong> {{alertData}}
+    <a  class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    <div *ngIf="failAlertShow" class="alert alert-danger alert-dismissible">
+    <strong>Oops!</strong>{{alertData}}
+    <a  class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    <h4>Logged In: {{profileData?.firstname}}</h4>
+    </div>
+    <div class="col-md-6">
+    <h1 class='text-center'><u>Welcome to Seller Dashboard</u> </h1>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#changepassModal"><u>Change Password</u></button>
+    </div>
+    <div class="col-md-1">
+        <button type="button" class="btn btn-outline-danger" (click)="logout()"><u>Logout</u></button>
+    </div>
+    </div>
+</div>
+    <br>
+    <br>
+
+        <div class="row">
+          <div class="col-md-2 sidenav-btns">
+              
+            <button type="button" class="btn btn-s1" (click)="profile()" ><u>My Profile</u></button>
+            <br>
+            
+            <button type="button" class="btn btn-s1" (click)="viewOrders()"  ><u>Orders</u></button>
+            <br>
+            
+            <button type="button" class="btn btn-s1" (click)="listProducts()"><u>View Listed Products</u></button>
+            <br>
+            <button type="button" class="btn btn-s1" (click)="addProduct()" ><u>Add New Products</u></button>
+          </div>
+          
+          <div *ngIf="heading" class="col-md-10 content">
+              
+              <!--Profile -->
+              <form *ngIf="contentHeading === 'Profile'" name="profileform" [formGroup]="profileform" (ngSubmit)="profileform.valid && onUpdate()">
+                <h2  class="contentHead">{{contentHeading}}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="text"  class="form-control" pattern="[a-zA-Z ]*" formControlName="firstname" value={{profileData?.firstname}} [ngClass]="{'is-invalid':profileform.get('firstname')?.touched && profileform.get('firstname')?.invalid}"  />
+                            <div *ngIf="profileform.get('firstname')?.invalid" class="invalid-feedback">
+                              <div *ngIf="profileform.get('firstname')?.errors?.['required']">First Name is required</div>
+                              <div *ngIf="profileform.get('firstname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="lastname" value={{profileData?.lastname}} [ngClass]="{'is-invalid':profileform.get('lastname')?.touched && profileform.get('lastname')?.invalid}"  required />
+                            <div *ngIf="profileform.get('lastname')?.touched && profileform.get('lastname')?.invalid" class="invalid-feedback">
+                              <div *ngIf="profileform.get('lastname')?.errors?.['required']">Last Name is required</div>
+                              <div *ngIf="profileform.get('lastname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" [readonly]="true"  formControlName="email" value={{profileData?.email}} >
+                          </div>
+                          <div class="form-group">
+                            <label for="phone">Phone No</label>
+                            <input type="text" class="form-control" formControlName="phone" value={{profileData?.phone}} [ngClass]="{'is-invalid':profileform.get('phone')?.touched && profileform.get('phone')?.invalid}" required />
+                            <div *ngIf="profileform.get('phone')?.touched && profileform.get('phone')?.invalid" class="invalid-feedback">
+                              <div *ngIf="profileform.get('phone')?.errors?.['required']" >Phone no is required</div>
+                              <div *ngIf="profileform.get('phone')?.errors?.['minlength']">Please enter valid phone number</div>
+                              <div *ngIf="profileform.get('phone')?.errors?.['maxlength']">Phone number can have 10 digits</div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                         <div class="form-group">
+                <label for="sin">SIN No</label>
+                <input type="text" class="form-control" [readonly]="true"  formControlName="sin" value={{profileData?.sin}} >
+              </div>
+                <div class="form-group">
+                            <label for="accountno">Account No</label>
+                            <input type="text" class="form-control"  formControlName="accountno" value={{profileData?.accountno}} [ngClass]="{'is-invalid':profileform.get('accountno')?.touched && profileform.get('accountno')?.invalid}" required  >
+                            <div *ngIf="profileform.get('accountno')?.touched && profileform.get('accountno')?.invalid" class="invalid-feedback">
+                                <div *ngIf="profileform.get('accountno')?.errors?.['required']" >Account no is required</div>
+                              </div>
+                </div>
+                <div class="form-group">
+                            <label for="bankname">Bank Name</label>
+                            <input type="text" class="form-control" formControlName="bankname" value={{profileData?.bankname}} [ngClass]="{'is-invalid':profileform.get('bankname')?.touched && profileform.get('bankname')?.invalid}" required  >
+                            <div *ngIf="profileform.get('bankname')?.touched && profileform.get('bankname')?.invalid" class="invalid-feedback">
+                                <div *ngIf="profileform.get('bankname')?.errors?.['required']" >Bank Name is required</div>
+                              </div>
+                        </div>
+                <div class="form-group">
+                            <label for="address">Seller Address:</label>
+                            <textarea class="form-control" rows="4"  formControlName="address" id="address" value={{profileData?.seller_address}} name="address"></textarea>
+                </div> 
+                 </div>
+                    <br>
+                    
+                </div>
+                <div class="row">
+                    <br>
+                </div>
+               <div class="row reg">
+                   <div class="form-group">
+                    <button [disabled]="profileform.invalid" class="btn btn-primary">Update</button>
+                     </div>
+               </div>
+               <div class="row">
+                 <br>
+             </div>
+                  
+                </form>
+                
+                
+        <!--Orders-->
+
+        <div *ngIf="contentHeading === 'Orders'" class="row">
+            <div class="container">
+                <div class="row align-items-start">
+                  <div class="col">
+                      New Orders
+                  </div>
+                  <div class="col">
+                    Completed Order
+                  </div>
+                  <div class="col">
+                    Cancelled Orders
+                  </div>
+                </div>
+                </div>
+            <div class="col-md-12">
+                <div class="card bg-light mb-12">
+                    <div class="card-header">New Orders </div>
+                    <div class="card-body">
+                      <div class="row card-text" >
+                        <div class="col-md-6">
+                            <p>
+                                <b>Order Id:</b> 
+                            </p> 
+                            <p>
+                                <b>Order Items:</b> 
+                            </p> 
+                        </div>
+
+                       <div class="col-md-2">
+                        <img src="" alt="Order Image">
+                       </div>
+                       <div class="col-md-2">
+                        <button class="btn btn-outline-danger btn-sm">Accept</button>
+                       </div>
+                       <div class="col-md-2">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                       </div>
+                    </div>
+        
+                    </div>
+                  </div>
+              </div>
+        </div>
+        
+        <!--View Products-->
+        <div *ngIf="contentHeading === 'Products'" class="row">
+            <div class="col-md-12">
+                <div class="card bg-light mb-12">
+                    <div class="card-header">Products </div>
+                    <div class="card-body">
+                      <div class="row card-text" >
+                        <div class="col-md-6">
+                            <p>
+                                <b>Products Name:</b> 
+                            </p> 
+                            <p>
+                                <b>Product Type:</b> 
+                            </p> 
+                        </div>
+
+                       <div class="col-md-2">
+                        <img src="" alt="Order Image">
+                       </div>
+                       <div class="col-md-2">
+                        <button class="btn btn-outline-danger btn-sm">Edit</button>
+                       </div>
+                       <div class="col-md-2">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                       </div>
+                    </div>
+        
+                    </div>
+                  </div>
+              </div>
+        </div>
+
+        
+        <!-- Add New Product-->
+         <form *ngIf="contentHeading === 'Add New Product'" name="productform" [formGroup]="productform" (ngSubmit)="productform.valid && onAddProduct()">
+          <h2  class="contentHead">{{contentHeading}}</h2>
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="productname">Product Name</label>
+                      <input type="text"  class="form-control" pattern="[a-zA-Z ]*" formControlName="productname" [ngClass]="{'is-invalid':productform.get('productname')?.touched && productform.get('productname')?.invalid}" required />
+                      <div *ngIf="productform.get('productname')?.invalid" class="invalid-feedback">
+                        <div *ngIf="productform.get('productname')?.errors?.['required']">Product Nameis required</div>
+                        <div *ngIf="productform.get('productname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="About">About Product (Short)</label>
+                      <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="About" [ngClass]="{'is-invalid':productform.get('About')?.touched && productform.get('About')?.invalid}"  required />
+                      <div *ngIf="productform.get('About')?.touched && productform.get('About')?.invalid" class="invalid-feedback">
+                        <div *ngIf="productform.get('About')?.errors?.['required']">About Products required</div>
+                        <div *ngIf="productform.get('About')?.errors?.['pattern']"> Please enter alphabets only</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="image">Product Images</label>
+                      <input  #imageInput class="form-control" type="file" id="image" (change)="onUpload($event)"  formControlName="image" accept="image/*" [ngClass]="{'is-invalid':productform.get('image')?.touched && productform.get('image')?.invalid}" multiple required >
+                      <div *ngIf="productform.get('image')?.touched && productform.get('image')?.invalid" class="invalid-feedback">
+                        <div *ngIf="productform.get('image')?.errors?.['required']">Product Image is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="brand">Brand</label>
+                      <input type="text" class="form-control" formControlName="brand" pattern="[a-zA-Z ]*" [ngClass]="{'is-invalid':productform.get('brand')?.touched && productform.get('brand')?.invalid}" required />
+                      <div *ngIf="productform.get('brand')?.touched && productform.get('brand')?.invalid" class="invalid-feedback">
+                        <div *ngIf="productform.get('brand')?.errors?.['required']" >Brand is required</div>
+                        <div *ngIf="productform.get('brand')?.errors?.['pattern']"> Please enter alphabets only</div>
+                      </div>
+                    </div>
+              </div>
+              <div class="col-md-6">
+                   <div class="form-group">
+          <label for="price">Price</label>
+          <input type="text" class="form-control"  formControlName="price" pattern="[0-9]*"  [ngClass]="{'is-invalid':productform.get('price')?.touched && productform.get('price')?.invalid}" required  >
+          <div *ngIf="productform.get('price')?.touched && productform.get('price')?.invalid" class="invalid-feedback">
+            <div *ngIf="productform.get('price')?.errors?.['required']" >Price is required</div>
+            <div *ngIf="productform.get('price')?.errors?.['pattern']"> Please enter Numbers only</div>
+          </div>
+        </div>
+          <div class="form-group">
+                      <label for="producttype">Product Type</label>
+                      <select class="form-select form-control" formControlName="producttype" [ngClass]="{'is-invalid':productform.get('producttype')?.touched && productform.get('producttype')?.invalid}" required>
+                        <option value="flash">
+                          Flash
+                        </option>
+                        <option value="normal">
+                          Normal
+                        </option>
+                        <option value="bidding">
+                          Bidding
+                        </option>
+                        </select>
+                      <div *ngIf="productform.get('producttype')?.touched && productform.get('producttype')?.invalid" class="invalid-feedback">
+                          <div *ngIf="productform.get('producttype')?.errors?.['required']" >Product type is required</div>
+                        </div>
+          </div>
+          <div class="form-group">
+            <label for="category">Product Category</label>
+            <select class="form-select form-control" formControlName="category" [ngClass]="{'is-invalid':productform.get('category')?.touched && productform.get('category')?.invalid}" required>
+              <option *ngFor="let category of productCategories" [value]="category._id">
+                {{category.name}}
+              </option>
+                
+              </select>
+              <div *ngIf="productform.get('category')?.touched && productform.get('category')?.invalid" class="invalid-feedback">
+                <div *ngIf="productform.get('category')?.errors?.['required']">Product Category is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+                      <label for="stock">No of Products in Stock</label>
+                      <input type="text" class="form-control" formControlName="stock" pattern="[0-9]*" [ngClass]="{'is-invalid':productform.get('stock')?.touched && productform.get('stock')?.invalid}" required  >
+                      <div *ngIf="productform.get('stock')?.touched && productform.get('stock')?.invalid" class="invalid-feedback">
+                          <div *ngIf="productform.get('stock')?.errors?.['required']" >Quantity in Stock is required</div>
+                          <div *ngIf="productform.get('stock')?.errors?.['pattern']"> Please enter Numbers only</div>
+                        </div>
+                  </div>
+          <div class="form-group">
+                      <label for="description">Product description</label>
+                      <textarea class="form-control" rows="4"  formControlName="description" id="description" name="description"></textarea>
+          </div> 
+           </div>
+              <br>
+              
+          </div>
+          <div class="row">
+              <br>
+          </div>
+         <div class="row reg">
+             <div class="form-group">
+              <button [disabled]="productform.invalid" class="btn btn-primary">Add Product</button>
+               </div>
+         </div>
+         <div class="row">
+           <br>
+       </div>
+            
+          </form>
+
+
+          </div>
+        </div>
+    
+    
+     
+    
+     <!-- Change Password Modal -->
+    <div class="modal fade" id="changepassModal" tabindex="-1" aria-labelledby="changepassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="changepassModalLabel">Change Password</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <form name="changepassform" [formGroup]="changepassform" (ngSubmit)="changepassform.valid">
+    <div class="modal-body">
+    <div class="form-group">
+    <label for="password">New Password</label>
+    <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':changepassform.get('password')?.touched && changepassform.get('password')?.invalid}" required />
+    <div *ngIf="changepassform.get('password')?.touched && changepassform.get('password')?.invalid"class="invalid-feedback">
+        <div *ngIf="changepassform.get('password')?.errors?.['required']">Password is required</div>
+        <div *ngIf="changepassform.get('password')?.errors?.['minlength']">Password must be at least of 8 charactors</div>
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="confirmpassword"> Confirm Password</label>
+    <input type="password" class="form-control"  formControlName="confirmpassword" [ngClass]="{'is-invalid':changepassform.get('confirmpassword')?.touched && changepassform.get('confirmpassword')?.invalid}" required />
+    <div *ngIf="changepassform.get('confirmpassword')?.touched && changepassform.get('confirmpassword')?.invalid"class="invalid-feedback">
+        <div *ngIf="changepassform.get('confirmpassword')?.errors?.['required']">Confirm Password is required</div>
+        <div *ngIf="changepassform.get('confirmpassword')?.errors?.['MustMatch']">Confirm Password does match password</div>
+    </div>
+    </div>
+    
+    </div>
+    <div class="modal-footer">
+    <button (click)="changePassword()" data-bs-dismiss="modal" [disabled]="changepassform.invalid" type="button" class="btn btn-primary">Change Password</button>
+    
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,69 @@
+<!-- /**
+ * Author: ABHISHEK KARTHIK MANIKANDAN
+ */ -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <h4 style="color: white; cursor: pointer;">Scotia jewellers</h4>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="d-flex col-6 col-md-6 col-lg-6 col-xs-12">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          [(ngModel)]="srchField" (change)="setSrchValue()"
+        />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/products">Products</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link active" routerLink="/wishlist">Wishlist</a>
+        </li> -->
+        <li *ngIf="loggedIn==true"  class="nav-item">
+          <a class="nav-link active" routerLink="/bidding">Bidding</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link active" routerLink="/aboutus">About Us</a>
+        </li> -->
+        <li *ngIf="loggedIn!=true" class="nav-item">
+          <a class="nav-link active" routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="loggedIn==true" class="nav-item">
+          <a class="nav-link active" routerLink="/profile">My Profile</a>
+        </li>
+        <li *ngIf="loggedIn==true" class="nav-item">
+          <a class="nav-link active" style="cursor: pointer;" (click)="logout()">Logout</a>
+        </li>
+        <li class="nav-item">
+          <em
+            class="pi pi-shopping-cart mt-2 text-white"
+            pBadge
+            style="font-size: 1.5rem; cursor: pointer"
+            [value]='productsCount'
+            severity="primary"
+            (click)="navigateToCheckoutPage()"
+          ></em>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

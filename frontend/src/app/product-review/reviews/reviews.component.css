@@ -1,0 +1,82 @@
+/* Authored by Rutu Joshi, B00897744, rt296393@dal.ca
+ */
+.main-reviews{
+    width:85%;
+    border-radius: 5px;
+    box-shadow: rgba(0.20, 0.20, 0.20, 0.20) 2px 2px 2px 2px;
+    padding: 10px;
+    padding-top: 10px;
+    margin-left: 7.5%;
+    background: #f1f0ef;
+}
+
+.user-icon{
+    background-size: cover;
+    
+}
+
+.avg-review{
+    min-height: 70px;
+    width: 99.8%;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.reviews-card{
+    width:99.8%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 10px;
+}
+
+.reviews{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.flex-container{
+    display: flex;
+}
+
+.user-name{
+    font-size: 20px;
+    padding-left: 10px;
+}
+ngb-rating {
+    color: #FFC107;
+    font-size: 30px;
+    margin-left: 5px;
+}
+
+.write-review{
+    position: absolute;
+right: 10px;
+top: 5px;
+}
+h3{
+    top: 5px;
+    margin-bottom: 0px;
+}
+.progress {
+    background: #f2f4f8 none repeat scroll 0 0;
+    border-radius: 0;
+    height: 30px;
+}
+h2{
+    margin-left: 50px;
+  
+}
+
+  .text-gray{
+      font-size: 13px;
+  }
+
+  .avg-style{
+    display: flex;
+    
+}
+
+  @media screen and (max-width: 600px) {
+    .avg-style{
+        display: block;
+    }
+  }

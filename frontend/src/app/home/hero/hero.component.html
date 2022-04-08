@@ -1,0 +1,45 @@
+<!-- /**
+ * Author: ABHISHEK KARTHIK MANIKANDAN
+ */ -->
+<section class="banner mt-2 container">
+  <div class="grid">
+    <div
+      class="xl:col-5 xl:col-offset-1 lg:col-5 lg:col-offset-1 md:col-4 sm:col-12 col-12"
+    >
+      <h2>One stop store for all your jewellery needs</h2>
+      <p-button
+        label="Shop now"
+        styleClass="banner-button"
+        icon="pi pi-angle-right"
+        iconPos="right"
+        (click)="navigateToProductsPage()"
+      ></p-button>
+    </div>
+    <div class="col-4 col-offset-2 col-md-5 col-sm-2 hidden-xs">
+      <img src="assets/images/shopping-cart.svg" alt="" class="banner-img" />
+    </div>
+  </div>
+</section>
+
+<section class="categories-banner mt-3 container">
+  <h3>Categories</h3>
+  <div class="grid">
+    <div
+      class="xl:col-2 lg:col-2 md:col-4 sm:col-12 col-12"
+      *ngFor="let category of categories"
+    >
+      <div
+        class="category"
+        (click)="navigateToCategory(category.id)"
+        style="cursor: pointer;"
+      >
+        <div class="category-icon">
+          <img src="{{category.icon}}" width="55rem" height="55rem" alt="" />
+        </div>
+        <div class="category-name">
+          <h5>{{category.name}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

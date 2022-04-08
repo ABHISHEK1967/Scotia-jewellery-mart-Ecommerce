@@ -1,0 +1,36 @@
+<!-- Authored by Rutu Joshi, B00897744, rt296393@dal.ca -->
+<div *ngFor = "let otherreview of otherreviews">
+    <div class="reviews-members pt-4 pb-4">
+       <div class="media">
+           <div class="flex-container">
+               <div class = "d-flex flex-row">
+                   <div class = "p-2">
+                   <img mat-card-avatar alt="Generic placeholder image" class = "img-thumbnail"
+                       src="../../../assets/images/blue user icon.png" class="user-icon"/></div>
+                     
+                       <div class="d-flex flex-column p-2">
+                           <p class="h5 l-10 ">{{otherreview.username}}</p>
+                            <p >{{otherreview.reviewdate}}</p>
+                       </div>
+                       <div class="media-body p-2" >
+                        <p-rating [(ngModel)] = "otherreview.rating" [readonly] = "true" [cancel]="false"></p-rating>
+                           <!-- <ngb-rating class = "h3" [readonly]="true" [max]="5" [rate] = otherreview.rating></ngb-rating> -->
+                       </div>
+                       
+               </div>
+               
+               
+           </div>
+           <div class="reviews-members-body">
+               <p> {{otherreview.description}}</p>
+           </div>
+           <div *ngFor="let x of otherreview.images" class=" d-flex flex-row d-inline">
+               <div>
+            <img [src]="x" alt="" class="img-thumbnail" style = "height: 120px;width:120px" />
+        </div>
+
+        </div>
+       </div>
+   </div>
+   <mat-divider></mat-divider>
+   

@@ -1,0 +1,80 @@
+<div class="field mt-2">
+  <p-button
+    label="Back to shopping"
+    class="col-6"
+    (click)="navigateToHome()"
+  ></p-button>
+  
+  <p-card styleClass="mt-2 ml-2 mr-2">
+    <h3 class="ml-2">Shopping Cart</h3>
+    <div class="grid">
+      <div class="xl:col-6 lg:col-6 md:col-12 sm:col-12">
+        <p-card styleClass="mb-2" *ngFor="let item of shoppingCart">
+          <div class="grid">
+            <div class="field xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <div>
+                <label for=""> Name: {{item.details.name}}</label>
+              </div>
+
+              <div>
+                <img
+                  src="{{item.details.image}}"
+                  alt=""
+                  height="140rem"
+                  width="150rem"
+                />
+              </div>
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <p-inputNumber
+                [(ngModel)]="item.quantity"
+                [showButtons]="true"
+                inputId="minmax"
+                inputId="minmax"
+                mode="decimal"
+                [min]="1"
+                [max]="100"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                (ngModelChange)="addToCart(item.details.id,item.quantity)"
+                inputStyleClass=" xl:col-12 lg:col-12 md:col-12 sm:col-12"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              Price: {{item.details.price}}
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <p-button label="Delete" class="p-0 col-6" (click)="deleteCart(item.details.id)"></p-button>
+            </div>
+          </div>
+        </p-card>
+      </div>
+      <div class="xl:col-6 lg:col-6 md:col-12 sm:col-12">
+        <p-card>
+          <h3>Order summary</h3>
+          <div class="grid">
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <span>Price: {{sum}}</span>
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <span>Tax: {{tax}}</span>
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <span>Shipping fee: {{shipping}}</span>
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <span>Total Price: {{total}}</span>
+            </div>
+            <div class="xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <p-button label="Make payment" (click)="navigateToCheckoutPage()"></p-button>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </p-card>
+
+</div>

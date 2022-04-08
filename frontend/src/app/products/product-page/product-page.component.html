@@ -1,0 +1,88 @@
+<!-- /**
+ * Author: ABHISHEK KARTHIK MANIKANDAN
+ */ -->
+<div class="grid container">
+  <div class="col-12 mt-4 xl:col-6 lg:col-6 md:col-12 sm:col-12">
+    <img
+      src="{{productDetails?.products?.image}}"
+      alt=""
+      height="400rem"
+      width="400rem"
+    />
+  </div>
+  <div class="col-12 xl:col-6 lg:col-6 md:col-12 sm:col-12">
+    <div class="col-12">
+      <h2>{{productDetails?.products?.name}}</h2>
+    </div>
+    <div class="col-12">
+      <p class="description">
+        {{productDetails?.products?.description}}
+      </p>
+    </div>
+    <div class="grid ml-0">
+      <div class="col-6">
+        <p class="rating">
+          <p-rating
+            [(ngModel)]="reviewValue"
+            [cancel]="false"
+            [readonly]="true"
+          ></p-rating>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <h2 class="product-price">
+        {{productDetails?.products?.price | currency}}
+      </h2>
+    </div>
+    <div class="field col-12 md:col-3">
+      <p-inputNumber
+        [(ngModel)]="quantity"
+        [showButtons]="true"
+        inputId="minmax"
+        inputId="minmax"
+        mode="decimal"
+        [min]="1"
+        [max]="100"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        (ngModelChange)="addToCart()"
+      >
+      </p-inputNumber>
+    </div>
+    <div class="col-12">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Buy now"
+        class="p-button-rounded col-4 mr-2"
+      ></button>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Add to cart"
+        class="p-button-rounded col-4"
+        (click)="addToCart()"
+      ></button>
+    </div>
+  </div>
+  <div class="col-12">
+    <p-tabView>
+      <p-tabPanel header="Description">
+        {{productDetails?.products?.description}}
+      </p-tabPanel>
+      <p-tabPanel header="Features">
+        {{productDetails?.products?.features}}
+      </p-tabPanel>
+      <p-tabPanel header="Reviews">
+        <app-reviews></app-reviews>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

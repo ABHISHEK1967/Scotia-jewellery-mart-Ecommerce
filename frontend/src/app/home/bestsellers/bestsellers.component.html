@@ -1,0 +1,19 @@
+<!-- /**
+ * Author: ABHISHEK KARTHIK MANIKANDAN
+ */ -->
+<div class="container mt-3">
+  <h3>Bestsellers</h3>
+  <swiper [config]="config">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let best of bestseller">
+        <app-product-item [product]="best"></app-product-item>
+      </div>
+    </div>
+
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
+</div>

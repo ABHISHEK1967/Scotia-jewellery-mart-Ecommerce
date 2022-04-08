@@ -1,0 +1,137 @@
+/**
+ * Author: ABHISHEK KARTHIK MANIKANDAN
+ */
+.bg-light {
+  background-color: $primary-colour !important;
+}
+
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link.active {
+  color: white;
+}
+
+.navbar-light .navbar-brand {
+  color: white;
+}
+
+.banner {
+  height: 20.5rem;
+  width: 100%;
+  padding: 2rem;
+  background-color: #03253A;
+  color: white;
+  border-radius: 0.6rem;
+}
+
+.banner-img {
+  width: 15rem;
+  height: 15rem;
+}
+
+.banner-button {
+  color: white;
+  background-color: $primary-colour;
+  border: 0;
+}
+
+.banner-button:enabled:hover {
+  background-color: white;
+  border: 2px solid #800020;
+  color: $primary-colour !important;
+}
+
+.category {
+  min-height: 6.25rem;
+  border-radius: 0.6rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-colour;
+  flex-direction: column;
+  color: white;
+}
+
+.swiper-pagination {
+  position: initial;
+  text-align: center;
+  transition: 300ms opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.bestseller {
+  background-color: #03253A;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 16rem;
+  width: 16rem;
+  color: white;
+  text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+  .swiper-slide {
+    padding-left: 3.5rem !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .swiper-slide {
+    padding-left: 2.6rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide {
+    padding-left: 8.188rem !important;
+  }
+  .banner-img {
+    width: 13rem;
+  }
+  .hidden-xs {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hidden-xs {
+    display: none !important;
+  }
+  .col-sm-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .swiper-slide {
+    padding-left: 4.6rem !important;
+  }
+}
+
+.navbar-toggler {
+  background-color: #ffeecf;
+  border: 1px solid #ffeecf;
+}
+
+.navbar {
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+}
+
+.btn-primary {
+  color: white;
+  background-color: $primary-color-dark;
+  border-color: $primary-color-dark;
+}
+
+.btn-primary:hover {
+  color: white;
+  background-color: $primary-color-dark;
+  border-color: $primary-color-dark;
+}
+
+
+
+

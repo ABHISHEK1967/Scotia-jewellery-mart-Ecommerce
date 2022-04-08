@@ -1,0 +1,23 @@
+<!-- /**
+ * Author: ABHISHEK KARTHIK MANIKANDAN
+ */ -->
+<div class="bestseller p-1" >
+  <div class="bestseller-wrapper" >
+    <img
+      src="{{product.image}}"
+      alt=""
+      height="150rem"
+      width="150rem"
+      style="border-radius: 15px;"
+      (click)="navigateToProductPage(product?.id)"
+    />
+    <h5 class="p-1">{{product.name}}</h5>
+    <p-button
+      label="Add to cart"
+      styleClass="banner-button"
+      icon="pi pi-shopping-cart"
+      iconPos="left"
+      (click)="addToCart(product)"
+    ></p-button>
+  </div>
+</div>

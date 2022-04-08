@@ -1,0 +1,265 @@
+
+
+<div class="container emp-profile mt-1">
+    <div class="row">
+    <div class="col-md-3">
+    <div *ngIf="successAlertShow" class="alert alert-success alert-dismissible">
+    <strong>Success!   </strong> {{alertData}}
+    <a  class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    <div *ngIf="failAlertShow" class="alert alert-danger alert-dismissible">
+    <strong>Oops!</strong>{{alertData}}
+    <a  class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <h1 class='text-center'><u>Welcome</u> {{profileData?.firstname}} !!</h1>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changepassModal"><u>Change Password</u></button>
+    </div>
+    <!-- <div class="col-md-1">
+        <button type="button" class="btn btn-danger" (click)="logout()"><u>Logout</u></button>
+    </div> -->
+    </div>
+    <br>
+    <br>
+    
+      <div class="row">
+          
+          <div class="col-md-6">
+            <div class="card bg-white mb-6">
+                <div class="card-header">Profile Details</div>
+                <div class="card-body">
+                    <form name="profileform" [formGroup]="profileform" (ngSubmit)="profileform.valid && onUpdate()">
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="text"  class="form-control" pattern="[a-zA-Z ]*" formControlName="firstname" value={{profileData?.firstname}} [ngClass]="{'is-invalid':profileform.get('firstname')?.touched && profileform.get('firstname')?.invalid}"  />
+                            <div *ngIf="profileform.get('firstname')?.invalid" class="invalid-feedback">
+                              <div *ngIf="profileform.get('firstname')?.errors?.['required']">First Name is required</div>
+                              <div *ngIf="profileform.get('firstname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="lastname" value={{profileData?.lastname}} [ngClass]="{'is-invalid':profileform.get('lastname')?.touched && profileform.get('lastname')?.invalid}"  required />
+                            <div *ngIf="profileform.get('lastname')?.touched && profileform.get('lastname')?.invalid" class="invalid-feedback">
+                              <div *ngIf="profileform.get('lastname')?.errors?.['required']">Last Name is required</div>
+                              <div *ngIf="profileform.get('lastname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" [readonly]="true"  formControlName="email" value={{profileData?.email}} >
+                            
+                          </div>
+                          <div class="form-group">
+                            <label for="phone">Phone No</label>
+                            <input type="text" class="form-control" formControlName="phone" value={{profileData?.phone}} [ngClass]="{'is-invalid':profileform.get('phone')?.touched && profileform.get('phone')?.invalid}" required />
+                            <div *ngIf="profileform.get('phone')?.touched && profileform.get('phone')?.invalid" class="invalid-feedback">
+                              <div *ngIf="profileform.get('phone')?.errors?.['required']" >Phone no is required</div>
+                              <div *ngIf="profileform.get('phone')?.errors?.['minlength']">Please enter valid phone number</div>
+                              <div *ngIf="profileform.get('phone')?.errors?.['maxlength']">Phone number can have 10 digits</div>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="form-group reg">
+                            <button [disabled]="profileform.invalid" class="btn btn-primary">Update</button>
+                          </div>
+                        </form>
+                </div>
+              </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="card bg-white mb-6">
+                <div class="card-header">Address </div>
+                <div class="card-body">
+                  <h5 class="card-title"><button type="button" data-bs-toggle="modal" data-bs-target="#addressModal" class="btn btn-outline-success">Add Address</button></h5>
+                  
+                  <div *ngFor="let address of userAddress" class="row card-text" >
+                    <div class="col-md-9">
+                        <p>
+                            <b>Address:</b> {{address.address}}, {{address.city}}, {{address.state}}, {{address.country}}
+                            <b>Zipcode:</b> {{address.zip}} 
+                        </p> 
+                    </div>   
+                   <div class="col-md-3">
+                    <button class="btn btn-outline-danger btn-sm" (click)="deleteAddress(address.id)">Delete</button>
+                   </div>
+                </div>
+    
+                </div>
+              </div>
+          </div>
+    
+      </div>
+    
+    <!-- <div class="row">
+       <div class="col-md-6">
+            <div class="container-fluid data">
+                <h3><u>Profile Details</u></h3>
+                <form name="profileform" [formGroup]="profileform" (ngSubmit)="profileform.valid && onUpdate()">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text"  class="form-control" pattern="[a-zA-Z ]*" formControlName="firstname" value={{profileData?.firstname}} [ngClass]="{'is-invalid':profileform.get('firstname')?.touched && profileform.get('firstname')?.invalid}"  />
+                        <div *ngIf="profileform.get('firstname')?.invalid" class="invalid-feedback">
+                          <div *ngIf="profileform.get('firstname')?.errors?.['required']">First Name is required</div>
+                          <div *ngIf="profileform.get('firstname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" pattern="[a-zA-Z ]*" formControlName="lastname" value={{profileData?.lastname}} [ngClass]="{'is-invalid':profileform.get('lastname')?.touched && profileform.get('lastname')?.invalid}"  required />
+                        <div *ngIf="profileform.get('lastname')?.touched && profileform.get('lastname')?.invalid" class="invalid-feedback">
+                          <div *ngIf="profileform.get('lastname')?.errors?.['required']">Last Name is required</div>
+                          <div *ngIf="profileform.get('lastname')?.errors?.['pattern']"> Please enter alphabets only</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" [readonly]="true"  formControlName="email" value={{profileData?.email}} >
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Phone No</label>
+                        <input type="text" class="form-control" formControlName="phone" value={{profileData?.phone}} [ngClass]="{'is-invalid':profileform.get('phone')?.touched && profileform.get('phone')?.invalid}" required />
+                        <div *ngIf="profileform.get('phone')?.touched && profileform.get('phone')?.invalid" class="invalid-feedback">
+                          <div *ngIf="profileform.get('phone')?.errors?.['required']" >Phone no is required</div>
+                          <div *ngIf="profileform.get('phone')?.errors?.['minlength']">Please enter valid phone number</div>
+                          <div *ngIf="profileform.get('phone')?.errors?.['maxlength']">Phone number can have 10 digits</div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-group reg">
+                        <button [disabled]="profileform.invalid" class="btn btn-primary">Update</button>
+                      </div>
+                    </form>
+                </div>
+                
+        </div> 
+    
+        <div class="col-md-6">
+            <div class="container-fluid data">
+                <div class="row">
+                    <div class="col-md-8"><h3><u>Address</u></h3></div>
+                    <div class="col-md-4"><button type="button" data-bs-toggle="modal" data-bs-target="#addressModal" class="btn btn-outline-success">Add Address</button></div>
+                </div>
+                
+                <div *ngFor="let address of userAddress" class="row address" >
+                    <div class="col-md-9">
+                        <p>
+                            <b>Address:</b> {{address.address}}, {{address.city}}, {{address.state}}, {{address.country}}
+                            <b>Zipcode:</b> {{address.zip}}   
+                            
+                        </p> 
+                    </div>   
+                   <div class="col-md-3">
+                    <button (click)="deleteAddress(address.id)">Delete</button>
+                   </div>
+                </div>
+                
+            </div>
+        </div> 
+    </div> -->
+    
+    <!--  Change Password Modal -->
+    <div class="modal fade" id="changepassModal" tabindex="-1" aria-labelledby="changepassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="changepassModalLabel">Change Password</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <form name="changepassform" [formGroup]="changepassform" (ngSubmit)="changepassform.valid">
+    <div class="modal-body">
+    <div class="form-group">
+    <label for="password">New Password</label>
+    <input type="password" class="form-control"  formControlName="password" [ngClass]="{'is-invalid':changepassform.get('password')?.touched && changepassform.get('password')?.invalid}" required />
+    <div *ngIf="changepassform.get('password')?.touched && changepassform.get('password')?.invalid"class="invalid-feedback">
+        <div *ngIf="changepassform.get('password')?.errors?.['required']">Password is required</div>
+        <div *ngIf="changepassform.get('password')?.errors?.['minlength']">Password must be at least of 8 charactors</div>
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="confirmpassword"> Confirm Password</label>
+    <input type="password" class="form-control"  formControlName="confirmpassword" [ngClass]="{'is-invalid':changepassform.get('confirmpassword')?.touched && changepassform.get('confirmpassword')?.invalid}" required />
+    <div *ngIf="changepassform.get('confirmpassword')?.touched && changepassform.get('confirmpassword')?.invalid"class="invalid-feedback">
+        <div *ngIf="changepassform.get('confirmpassword')?.errors?.['required']">Confirm Password is required</div>
+        <div *ngIf="changepassform.get('confirmpassword')?.errors?.['MustMatch']">Confirm Password does match password</div>
+    </div>
+    </div>
+    
+    </div>
+    <div class="modal-footer">
+    <button (click)="changePassword()" data-bs-dismiss="modal" [disabled]="changepassform.invalid" type="button" class="btn btn-primary">Change Password</button>
+    
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    
+    <!--  Add New Address Modal -->
+    <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="addressModalLabel">Add New Address</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form name="newaddressform" [formGroup]="newaddressform" (ngSubmit)="newaddressform.valid">
+    <div class="modal-body">
+    
+        <div class="form-group">
+        <label for="address">Street Address</label>
+        <input type="text" class="form-control"  formControlName="address" [ngClass]="{'is-invalid':newaddressform.get('address')?.touched && newaddressform.get('address')?.invalid}" required />
+        <div *ngIf="newaddressform.get('address')?.touched && newaddressform.get('address')?.invalid" class="invalid-feedback">
+            <div *ngIf="newaddressform.get('address')?.errors?.['required']">Address is required</div>
+        </div>
+        </div>
+    
+        <div class="form-group">
+        <label for="city"> City</label>
+        <input type="text" class="form-control"  formControlName="city" [ngClass]="{'is-invalid':newaddressform.get('city')?.touched && newaddressform.get('city')?.invalid}" required />
+        <div *ngIf="newaddressform.get('city')?.touched && newaddressform.get('city')?.invalid" class="invalid-feedback">
+            <div *ngIf="newaddressform.get('city')?.errors?.['required']">City is required</div>
+        </div>
+        </div>
+    
+        <div class="form-group">
+            <label for="state"> State / Province</label>
+            <input type="text" class="form-control"  formControlName="state" [ngClass]="{'is-invalid':newaddressform.get('state')?.touched && newaddressform.get('state')?.invalid}" required />
+            <div *ngIf="newaddressform.get('state')?.touched && newaddressform.get('state')?.invalid" class="invalid-feedback">
+                <div *ngIf="newaddressform.get('state')?.errors?.['required']">State/Province is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zip"> Zipcode / Postal Code</label>
+            <input type="text" class="form-control"  formControlName="zip" [ngClass]="{'is-invalid':newaddressform.get('zip')?.touched && newaddressform.get('zip')?.invalid}" required />
+            <div *ngIf="newaddressform.get('zip')?.touched && newaddressform.get('zip')?.invalid" class="invalid-feedback">
+                <div *ngIf="newaddressform.get('zip')?.errors?.['required']">zip is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="country"> Country</label>
+            <select formControlName="country" class="form-control"  [ngClass]="{'is-invalid':newaddressform.get('country')?.touched && newaddressform.get('country')?.invalid}" required >
+                <option value="null" disabled>Country</option>
+                <option value="India">India</option>
+                <option value="Canada">Canada</option>
+                <option value="USA">USA</option>
+                <option value="Mexico">Mexico</option>
+            </select>
+            <div *ngIf="newaddressform.get('country')?.touched && newaddressform.get('country')?.invalid" class="invalid-feedback">
+                <div *ngIf="newaddressform.get('country')?.errors?.['required']">Country is required</div>
+            </div>
+        </div>
+    </div>
+        <div class="modal-footer">
+        <button (click)="addNewAddress()" data-bs-dismiss="modal" [disabled]="newaddressform.invalid" type="button" class="btn btn-primary">Add Address</button>
+        
+        </div>
+        </form>
+        </div>
+        </div>
+        </div>

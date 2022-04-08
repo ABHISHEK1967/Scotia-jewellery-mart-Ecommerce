@@ -1,0 +1,38 @@
+<!-- Authored by Rutu Joshi, B00897744, rt296393@dal.ca -->
+<div *ngFor = "let ureview of ureviews;let i=index">
+ <div class="reviews-members pt-4 pb-4">
+    <div class="media">
+        <div class="flex-container">
+            <div class = "d-flex flex-row">
+                <div class = "p-2">
+                    <img mat-card-avatar alt="Generic placeholder image"
+                    src="../../../assets/images/blue user icon.png" class="user-icon"/></div>
+                    <div class="d-flex flex-column p-2">
+                        <p class="h5 l-10 ">{{ureview.username}}</p>
+                         <p >{{ureview.reviewdate}}</p>
+                    </div>
+                    <div class="media-body p-2" >
+                        <p-rating [(ngModel)] = "ureview.rating" [readonly] = "true" [cancel]="false"></p-rating>
+                        <!-- <ngb-rating class = "h3" [readonly]="true" [max]="5" [rate] = ureview.rating></ngb-rating> -->
+                    </div>
+                    <div class = "right-review pr-2">
+                        <div class="pl-20 r-10">
+                        <p-button icon="pi pi-trash" styleClass="rounded-button ui-button-outlined mt-1 float-right example-button-container" (click)="deleteReview(ureview,i)"></p-button>
+                        </div>
+                        <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = deleteReview(ureview,i)>
+                            <mat-icon>delete</mat-icon>
+                          </button> -->
+                    </div>
+            </div>
+            
+            
+        </div>
+        <div class="reviews-members-body">
+            <p> {{ureview.description}}</p>
+        </div>
+        <div *ngFor="let x of ureview.images">
+            <img [src]="x" alt="" class="banner-img" />
+        </div>
+    </div>
+</div>
+<mat-divider></mat-divider>

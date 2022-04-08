@@ -1,0 +1,27 @@
+/* =======================================================
+ Author: [Anita Kumari] (an954221@dal.ca)
+=======================================================  */
+
+.table-layout-main-content{
+    min-height:780px;
+    border: none;
+    padding-left: 5%;
+    padding-right: 6%;
+}
+
+.table-img{
+    width:10rem;
+    height:10rem;
+}
+
+.winner-img{
+    width:6rem;
+    height:6rem;
+}
+
+.lost-img{
+    width: 2rem;
+    height: 3rem;
+    filter: invert(7%) sepia(62%) saturate(4229%) hue-rotate(335deg) brightness(99%) contrast(96%);
+}
+

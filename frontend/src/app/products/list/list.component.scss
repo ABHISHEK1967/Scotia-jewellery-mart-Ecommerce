@@ -1,0 +1,78 @@
+/*
+Authored by Abhishek Karthik Manikandan, B00870510, ab620101@dal.ca and Xiao Ling, B00877105, xz540782@dal.ca
+ */
+
+.bidding-main-content{
+    min-height:750px;
+}
+
+.bidding-header{
+    color:#4F0003;
+    font-weight:700;
+}
+
+.font-awesome-icon-img{
+    width: 1.5rem;
+    margin-right: 2%;
+    filter: invert(7%) sepia(62%) saturate(4229%) hue-rotate(335deg) brightness(99%) contrast(96%)
+}
+
+.radio-btn-mr{
+    margin-left: 10px;
+}
+
+
+.cat-flt-header{
+    margin-bottom:3px;
+    font-weight:700;
+    font-size: 1.2rem;
+}
+
+.filter-brand{
+    margin-top: 15%;
+}
+
+.filter-price{
+    margin-top: 15%;
+}
+
+.min-price-style{
+    margin-bottom: 6%;
+}
+
+.product-grid-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.bid-btn{
+    width: 50%;
+    height: 44px;
+    color: white;
+    background-color: #4F0003;
+    margin-top: 13%;
+}
+
+.filter-head{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -11px;
+}
+
+.send-font-awe{
+
+    font-size: 32px;
+    /* margin-bottom: 4%; */
+    position: absolute;
+    right: 19px;
+    top: -10px;
+    color: #4F0003;
+}
+
+.sort-modal{
+    margin-bottom: 4px;
+    cursor: pointer;
+    font-weight: 800;
+}

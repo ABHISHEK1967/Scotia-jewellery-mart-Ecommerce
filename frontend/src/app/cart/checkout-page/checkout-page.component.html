@@ -1,0 +1,138 @@
+<p-card styleClass="mt-2 ml-2 mr-2">
+  <form [formGroup]="checkoutForm">
+    <div class="formgrid grid">
+      <div class="formgrid grid col-6 col-md-12 col-lg-6 col-sm-12">
+   
+        <div class="field col-12 col-md-6">
+          <label for="Address">Address</label>
+          <input
+            id="Address"
+            type="text"
+            pInputText
+            class="inputfield w-full"
+            formControlName="address"
+            [ngClass]="{ 'ng-invalid': f['address'].hasError('required') && f['address'].touched, 
+          'ng-dirty':f['address'].hasError('required') && f['address'].touched}"
+          />
+          <div *ngIf="f['address'].errors">
+            <div
+              *ngIf="f['address'].hasError('required') && f['address'].touched"
+            >
+              <small id="address" class="p-error block"
+                >Address is required.</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="field col-12 col-md-6">
+          <label for="city">City</label>
+          <input
+            id="city"
+            type="text"
+            pInputText
+            class="inputfield w-full"
+            formControlName="city"
+            [ngClass]="{ 'ng-invalid': f['city'].hasError('required') && f['city'].touched, 
+          'ng-dirty':f['city'].hasError('required') && f['city'].touched}"
+            class="p-inputtext-sm inputfield w-full"
+          />
+          <div *ngIf="f['city'].errors">
+            <div *ngIf="f['city'].hasError('required') && f['city'].touched">
+              <small id="city" class="p-error block"
+                >City name is required.</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="field col-12 col-md-6">
+          <label for="state">State</label>
+          <input
+            id="state"
+            type="text"
+            pInputText
+            class="inputfield w-full"
+            formControlName="state"
+            [ngClass]="{ 'ng-invalid': f['state'].hasError('required') && f['state'].touched, 
+          'ng-dirty':f['state'].hasError('required') && f['state'].touched}"
+          />
+          <div *ngIf="f['state'].errors">
+            <div *ngIf="f['state'].hasError('required') && f['state'].touched">
+              <small id="state" class="p-error block">State is required.</small>
+            </div>
+          </div>
+        </div>
+        <div class="field col-12 col-md-6">
+          <label for="zip">Zip</label>
+          <input
+            id="zip"
+            type="text"
+            pInputText
+            class="inputfield w-full"
+            formControlName="zip"
+            [ngClass]="{ 'ng-invalid': f['zip'].hasError('required') && f['zip'].touched, 
+            'ng-dirty':f['zip'].hasError('required') && f['zip'].touched}"
+          />
+          <div *ngIf="f['zip'].errors">
+            <div *ngIf="f['zip'].hasError('required') && f['zip'].touched">
+              <small id="zip" class="p-error block">zipcode is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-12 col-lg-6 col-sm-12 ml-1">
+        <h4>Order Summary</h4>
+        <p-card>
+          <div class="grid">
+            <div class="field grid col-12">
+              <label
+                for="Price"
+                class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6"
+                >Price:</label
+              >
+              <div class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6">
+                {{sum}}
+              </div>
+            </div>
+            <div class="field grid col-12">
+              <label for="Tax" class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6"
+                >Tax:</label
+              >
+              <div class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6">
+                {{tax}}
+              </div>
+            </div>
+            <div class="field grid col-12">
+              <label
+                for="Shipping fee"
+                class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6"
+                >Shipping fee:</label
+              >
+              <div class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6">
+                {{shipping}}
+              </div>
+            </div>
+            <div class="field grid col-12">
+              <label
+                for="Total Price"
+                class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6"
+                >Total Price:</label
+              >
+              <div class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-6">
+                {{total}}
+              </div>
+            </div>
+
+            <div class="col-12 xl:col-12 lg:col-12 md:col-12 sm:col-12">
+              <p-button
+                label=" Place order and Make payment"
+                class="col-12 p-0"
+                (click)="placeOrder()"
+                [disabled]="!checkoutForm.valid"
+              ></p-button>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </form>
+</p-card>

@@ -1,0 +1,74 @@
+<!-- Authored by Rutu Joshi, B00897744, rt296393@dal.ca -->
+<!-- <p-dialog header="Header"  [style]="{width: '50vw'}" [baseZIndex]="10000"> -->
+<div
+  style="
+    background-color: rgba(205, 209, 209, 0.425);
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+  "
+>
+  <mat-card class="main-reviews">
+    <div>
+      <p class="mb-0 h3 p-1">Rate your experience</p>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div>
+      <div class="flex-container">
+        <div class="d-flex flex-row">
+          <div><p class="mb-0 h5 mt-3 p-10">Your ratings:</p></div>
+
+          <div>
+            <div class="media-body mt-3 ml-5">
+              <p-rating [(ngModel)]="rating.score" [cancel]="false"></p-rating>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <p-fileUpload name="picture" (onSelect)="onUpload($event)" [customUpload]="true" 
+        [showUploadButton]="false"
+        [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+        <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} bytes</li>
+            </ul>
+        </ng-template>
+</p-fileUpload>
+      </div>
+      <div>
+        <img
+          *ngFor="let preview of previews"
+          [src]="preview"
+          class="p-1"
+          style="height: 60px; width: 60px; align-items: left;"
+        />
+      </div>
+
+      <div class="wrapper">
+        <textarea
+          [(ngModel)]="textAreaInput"
+          name="the-textarea"
+          id="the-textarea"
+          maxlength="300"
+          placeholder="Write your review here..."
+          value="discription"
+          autofocus
+        ></textarea>
+      </div>
+    </div>
+    <button
+      mat-raised-button
+      style="width: 99.8%;"
+      class="submit"
+      (click)="submitRevieww()"
+    >
+      Submit Review
+    </button>
+    <button mat-raised-button style="width: 99.8%;" (click)="goBack()">
+      Never mind!
+    </button>
+  </mat-card>
+</div>
+<!-- </p-dialog> -->
